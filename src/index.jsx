@@ -1,7 +1,7 @@
 import React from 'react'
 import InputField from 't-react-input-field'
-import FormValidator from './lib/form-validator.js'
-import clamp from './lib/clamp.js'
+import FormValidator from './form-validator.js'
+import clamp from './clamp.js'
 
 function FormGenerator(buttonText) {
   var _val = new FormValidator(false);
