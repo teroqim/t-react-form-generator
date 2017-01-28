@@ -103,4 +103,4 @@ function FormGenerator(buttonText) {
   };
 }
 
-module.exports = FormGenerator;
+export default FormGenerator
