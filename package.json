@@ -1,0 +1,28 @@
+{
+  "name": "t-react-form-generator",
+  "version": "1.0.0",
+  "description": "Generate forms with validation",
+  "main": "index.jsx",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/teroqim/t-react-form-generator.git"
+  },
+  "keywords": [
+    "react",
+    "form"
+  ],
+  "author": "Peter Andersson <teroqim@gmail.com> (https://github.com/teroqim)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/teroqim/t-react-form-generator/issues"
+  },
+  "homepage": "https://github.com/teroqim/t-react-form-generator#readme",
+  "dependencies": {
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "t-react-modal": "teroqim/t-react-input-field",
+  }
+}
