@@ -34,11 +34,11 @@ module.exports = {
       root: process.cwd()
     }),
     new ExtractTextPlugin('index.css'),
-    new webpack.optimize.OccurrenceOrderPlugin(true),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false
-      }
-    })
+    new webpack.optimize.OccurrenceOrderPlugin(true)
+    // new webpack.optimize.UglifyJsPlugin({
+    //   compress: {
+    //     warnings: false
+    //   }
+    // })
   ],
 };

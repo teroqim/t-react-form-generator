@@ -1,6 +1,6 @@
 {
   "name": "t-react-form-generator",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Generate forms with validation",
   "main": "dist/index.js",
   "scripts": {
