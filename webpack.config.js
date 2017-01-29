@@ -29,6 +29,11 @@ module.exports = {
       },
     ]
   },
+  resolve: {
+      alias: {
+        react: path.resolve('./node_modules/react'),
+      }
+  },
   plugins: [
     new CleanWebpackPlugin(['dist'], {
       // Without `root` CleanWebpackPlugin won't point to our
