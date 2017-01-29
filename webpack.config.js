@@ -29,11 +29,16 @@ module.exports = {
       },
     ]
   },
-  resolve: {
-      alias: {
-        react: path.resolve('./node_modules/react'),
+  externals: [
+    {
+      react: {
+        root: 'React',
+        commonjs2: 'react',
+        commonjs: 'react',
+        amd: 'react'
       }
-  },
+    }
+  ],
   plugins: [
     new CleanWebpackPlugin(['dist'], {
       // Without `root` CleanWebpackPlugin won't point to our
