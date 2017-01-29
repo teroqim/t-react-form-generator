@@ -2580,6 +2580,14 @@ tar@~2.2.1:
     fstream "^1.0.2"
     inherits "2"
 
+teroqim/t-react-input-field:
+  name t-react-input-field
+  version "0.0.3"
+  resolved "https://codeload.github.com/teroqim/t-react-input-field/tar.gz/545b1d31f293c59391c30ec20b02c41aa9f243fb"
+  dependencies:
+    react "^15.4.2"
+    react-dom "^15.4.2"
+
 timers-browserify@^2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/timers-browserify/-/timers-browserify-2.0.2.tgz#ab4883cf597dcd50af211349a00fbca56ac86b86"

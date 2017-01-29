@@ -1,6 +1,6 @@
 {
   "name": "t-react-form-generator",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Generate forms with validation",
   "main": "./dist/index.js",
   "scripts": {
@@ -36,6 +36,6 @@
   "dependencies": {
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
-    "t-react-input-field": "teroqim/t-react-input-field#f6adc22"
+    "t-react-input-field": "teroqim/t-react-input-field"
   }
 }
