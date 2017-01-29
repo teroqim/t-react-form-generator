@@ -180,7 +180,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 	function generate2(_fields, _val, _bText) {
-	  _react2.default.createClass({
+	  return _react2.default.createClass({
 	    componentDidMount: function componentDidMount() {
 	      (0, _clamp2.default)(this.refs.errMsg, { clamp: 2 });
 	    },

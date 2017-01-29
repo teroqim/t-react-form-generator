@@ -75,7 +75,7 @@ function generate(fields, val, bText){
 }
 
 function generate2(_fields, _val, _bText) {
-  React.createClass({
+  return React.createClass({
     componentDidMount: function(){
       clamp(this.refs.errMsg, {clamp: 2});
     },
