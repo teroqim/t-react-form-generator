@@ -8,6 +8,8 @@ module.exports = {
   output: {
     path: path.join(__dirname, "/dist"),
     filename: "index.js",
+    library: 'FormGenerator',
+    libraryTarget: 'umd'
   },
   module: {
     loaders: [
@@ -34,11 +36,11 @@ module.exports = {
       root: process.cwd()
     }),
     new ExtractTextPlugin('index.css'),
-    new webpack.optimize.OccurrenceOrderPlugin(true)
-    // new webpack.optimize.UglifyJsPlugin({
-    //   compress: {
-    //     warnings: false
-    //   }
-    // })
+    new webpack.optimize.OccurrenceOrderPlugin(true),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false
+      }
+    })
   ],
 };
