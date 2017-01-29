@@ -179,6 +179,81 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }(_react2.default.Component);
 	}
 
+	function generate2(_fields, _val, _bText) {
+	  _react2.default.createClass({
+	    componentDidMount: function componentDidMount() {
+	      (0, _clamp2.default)(this.refs.errMsg, { clamp: 2 });
+	    },
+
+	    getInitialState: function getInitialState() {
+	      return {
+	        validator: _val
+	      };
+	    },
+
+	    onSubmit: function onSubmit() {
+	      this.state.validator.setEnabled(true);
+	      if (this.state.validator.validate(true)) {
+	        this.props.onSubmit(this.state.validator);
+	      } else {
+	        this.forceUpdate();
+	      }
+	    },
+
+	    render: function render() {
+	      var inputFields = _fields.map(function (field) {
+	        var func = function (e) {
+	          this.state.validator[field.name].update(e.target.value);
+	          this.state.validator.validate(false);
+	          this.forceUpdate();
+	        }.bind(this);
+	        return _react2.default.createElement(_tReactInputField2.default, {
+	          key: field.name,
+	          autoFocus: field.autoFocus,
+	          className: field.name,
+	          onChange: func,
+	          onEnter: this.onSubmit,
+	          password: field.isPassword,
+	          preText: field.preText,
+	          placeholder: field.placeholder,
+	          infoBubbleText: field.helpText,
+	          showError: this.state.validator[field.name].shouldHighlight,
+	          value: this.state.validator[field.name].value
+	        });
+	      }.bind(this));
+
+	      var errMsg = this.state.validator.getErrorMessage();
+	      if (this.props.extErrMsg) {
+	        if (errMsg) {
+	          errMsg = this.props.extErrMsg + ", " + errMsg;
+	        } else {
+	          errMsg = this.props.extErrMsg;
+	        }
+	      }
+
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'form-wrapper' },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'input-wrapper' },
+	          inputFields,
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'err-msg', ref: "errMsg" },
+	            errMsg
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'button',
+	          { className: 'action-button', onClick: this.onSubmit },
+	          _bText
+	        )
+	      );
+	    }
+	  });
+	}
+
 	function FormGenerator(buttonText) {
 	  var _val = new _formValidator2.default(false);
 	  var _fields = [];
@@ -202,74 +277,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    _val.addValidator.apply(_val, arguments);
 	  };
 	  this.generate = function () {
-	    // var genClass = React.createClass({
-	    //   componentDidMount: function(){
-	    //     clamp(this.refs.errMsg, {clamp: 2});
-	    //   },
-	    //
-	    //   getInitialState: function(){
-	    //     return {
-	    //       validator: _val,
-	    //     };
-	    //   },
-	    //
-	    //   onSubmit: function(){
-	    //     this.state.validator.setEnabled(true);
-	    //     if (this.state.validator.validate(true)) {
-	    //       this.props.onSubmit(this.state.validator);
-	    //     }
-	    //     else{
-	    //       this.forceUpdate();
-	    //     }
-	    //   },
-	    //
-	    //   render: function(){
-	    //     var inputFields = _fields.map(function(field){
-	    //       var func = function(e){
-	    //         this.state.validator[field.name].update(e.target.value);
-	    //         this.state.validator.validate(false);
-	    //         this.forceUpdate();
-	    //       }.bind(this);
-	    //       return (
-	    //         <InputField
-	    //           key={field.name}
-	    //           autoFocus={field.autoFocus}
-	    //           className={field.name}
-	    //           onChange={func}
-	    //           onEnter={this.onSubmit}
-	    //           password={field.isPassword}
-	    //           preText={field.preText}
-	    //           placeholder={field.placeholder}
-	    //           infoBubbleText={field.helpText}
-	    //           showError={this.state.validator[field.name].shouldHighlight}
-	    //           value={this.state.validator[field.name].value}
-	    //           />
-	    //       );
-	    //     }.bind(this));
-	    //
-	    //     var errMsg = this.state.validator.getErrorMessage();
-	    //     if (this.props.extErrMsg) {
-	    //       if (errMsg) {
-	    //         errMsg = this.props.extErrMsg + ", " + errMsg;
-	    //       }
-	    //       else {
-	    //         errMsg = this.props.extErrMsg;
-	    //       }
-	    //     }
-	    //
-	    //     return (
-	    //       <div className="form-wrapper">
-	    //         <div className="input-wrapper">
-	    //           {inputFields}
-	    //           <div className="err-msg" ref={"errMsg"}>{errMsg}</div>
-	    //         </div>
-	    //         <button className="action-button" onClick={this.onSubmit}>{_bText}</button>
-	    //       </div>
-	    //     );
-	    //   },
-	    // });
-
-	    return generate(_fields, _val, _bText);
+	    return generate2(_fields, _val, _bText);
 	  };
 	}
 
