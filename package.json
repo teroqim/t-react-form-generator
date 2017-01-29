@@ -33,10 +33,12 @@
     "extract-text-webpack-plugin": "^1.0.1",
     "style-loader": "^0.13.1",
     "webpack": "^1.14.0",
-    "react": "^15.4.2"
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2"
   },
   "peerDependencies": {
-    "react": "^15.4.2"
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2"
   },
   "dependencies": {
     "t-react-input-field": "teroqim/t-react-input-field"
