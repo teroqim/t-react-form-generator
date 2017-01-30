@@ -90,13 +90,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	  return function (_React$Component) {
 	    _inherits(_class, _React$Component);
 
-	    _createClass(_class, [{
-	      key: 'componentDidMount',
-	      value: function componentDidMount() {
-	        (0, _clamp2.default)(this.refs.errMsg, { clamp: 2 });
-	      }
-	    }]);
-
 	    function _class(props) {
 	      _classCallCheck(this, _class);
 
@@ -162,7 +155,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	            inputFields,
 	            _react2.default.createElement(
 	              'div',
-	              { className: 'err-msg', ref: 'errMsg' },
+	              { className: 'err-msg', ref: function ref(e) {
+	                  return (0, _clamp2.default)(e, { clamp: 2 });
+	                } },
 	              errMsg
 	            )
 	          ),
@@ -277,7 +272,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    _val.addValidator.apply(_val, arguments);
 	  };
 	  this.generate = function () {
-	    return generate2(_fields, _val, _bText);
+	    return generate(_fields, _val, _bText);
 	  };
 	}
 

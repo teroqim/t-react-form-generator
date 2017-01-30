@@ -5,10 +5,6 @@ import clamp from './clamp.js'
 
 function generate(fields, val, bText){
   return class extends React.Component {
-    componentDidMount(){
-      clamp(this.refs.errMsg, {clamp: 2})
-    }
-
     constructor(props){
       super(props)
       this.state = {
@@ -64,7 +60,7 @@ function generate(fields, val, bText){
         <div className='form-wrapper'>
           <div className='input-wrapper'>
             {inputFields}
-            <div className='err-msg' ref='errMsg'>{errMsg}</div>
+            <div className='err-msg' ref={e => clamp(e, {clamp: 2})}>{errMsg}</div>
           </div>
           <button className='action-button' onClick={this.onSubmit}>{bText}</button>
         </div>
@@ -172,7 +168,7 @@ function FormGenerator(buttonText) {
     _val.addValidator.apply(_val, arguments);
   };
   this.generate = function(){
-    return generate2(_fields, _val, _bText)
+    return generate(_fields, _val, _bText)
   };
 }
 
