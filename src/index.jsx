@@ -25,7 +25,7 @@ function generate(fields, val, bText){
     render(){
       const inputFields = fields.map(field => {
         const func = e => {
-          this.state.validator[field.name].update(e.target.value)
+          this.state.validator[field.name].update(e)
           this.state.validator.validate(false)
           this.forceUpdate()
         }
@@ -34,8 +34,8 @@ function generate(fields, val, bText){
             key={field.name}
             autoFocus={field.autoFocus}
             className={field.name}
-            onChange={func}
-            onEnter={this.onSubmit}
+            onChange={func.bind(this)}
+            onEnter={this.onSubmit.bind(this)}
             password={field.isPassword}
             preText={field.preText}
             placeholder={field.placeholder}

@@ -118,7 +118,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	        var inputFields = fields.map(function (field) {
 	          var func = function func(e) {
-	            _this2.state.validator[field.name].update(e.target.value);
+	            _this2.state.validator[field.name].update(e);
 	            _this2.state.validator.validate(false);
 	            _this2.forceUpdate();
 	          };
@@ -126,8 +126,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	            key: field.name,
 	            autoFocus: field.autoFocus,
 	            className: field.name,
-	            onChange: func,
-	            onEnter: _this2.onSubmit,
+	            onChange: func.bind(_this2),
+	            onEnter: _this2.onSubmit.bind(_this2),
 	            password: field.isPassword,
 	            preText: field.preText,
 	            placeholder: field.placeholder,
