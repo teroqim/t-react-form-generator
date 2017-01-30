@@ -165,7 +165,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	          ),
 	          _react2.default.createElement(
 	            'button',
-	            { className: 'action-button', onClick: this.onSubmit },
+	            { className: 'action-button', onClick: this.onSubmit.bind(this) },
 	            bText
 	          )
 	        );
