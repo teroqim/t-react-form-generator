@@ -156,7 +156,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	            _react2.default.createElement(
 	              'div',
 	              { className: 'err-msg', ref: function ref(e) {
-	                  return (0, _clamp2.default)(e, { clamp: 2 });
+	                  if (e) {
+	                    (0, _clamp2.default)(e, { clamp: 2 });
+	                  }
 	                } },
 	              errMsg
 	            )

@@ -60,7 +60,7 @@ function generate(fields, val, bText){
         <div className='form-wrapper'>
           <div className='input-wrapper'>
             {inputFields}
-            <div className='err-msg' ref={e => clamp(e, {clamp: 2})}>{errMsg}</div>
+            <div className='err-msg' ref={e => {if (e) {clamp(e, {clamp: 2})}}}>{errMsg}</div>
           </div>
           <button className='action-button' onClick={this.onSubmit}>{bText}</button>
         </div>
