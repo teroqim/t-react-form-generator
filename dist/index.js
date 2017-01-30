@@ -817,6 +817,8 @@ return /******/ (function(modules) { // webpackBootstrap
 		  }, {
 		    key: 'render',
 		    value: function render() {
+		      var _this2 = this;
+
 		      var type = 'text';
 		      if (this.props.password) {
 		        type = 'password';
@@ -868,7 +870,9 @@ return /******/ (function(modules) { // webpackBootstrap
 		          onFocus: this.onFocus.bind(this),
 		          onKeyPress: this.onKeyPress.bind(this),
 		          placeholder: this.props.placeholder,
-		          ref: 'input',
+		          ref: function ref(input) {
+		            return _this2.input = input;
+		          },
 		          type: type,
 		          value: this.state.value
 		        }),
@@ -879,7 +883,7 @@ return /******/ (function(modules) { // webpackBootstrap
 		  }, {
 		    key: 'setFocus',
 		    value: function setFocus() {
-		      this.refs.input.focus();
+		      this.input.focus();
 		    }
 		  }]);
 
