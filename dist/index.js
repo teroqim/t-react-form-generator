@@ -86,7 +86,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	function generate(fields, val, bText) {
+	function _generate(fields, val, bText) {
 	  return function (_React$Component) {
 	    _inherits(_class, _React$Component);
 
@@ -251,32 +251,83 @@ return /******/ (function(modules) { // webpackBootstrap
 	  });
 	}
 
-	function FormGenerator(buttonText) {
-	  var _val = new _formValidator2.default(false);
-	  var _fields = [];
-	  var _bText = buttonText;
-	  this.setButtonText = function (text) {
-	    _bText = text;
-	  };
+	// function FormGenerator(buttonText) {
+	//   const _val = new FormValidator(false)
+	//   const _fields = []
+	//   var _bText = buttonText
+	//
+	//   this.setButtonText = text => {
+	//     _bText = text
+	//   }
+	//
+	//   this.addField = (name,
+	//                   defaultValue,
+	//                   placeholder,
+	//                   helpText,
+	//                   autoFocus,
+	//                   isPassword,
+	//                   preText) => {
+	//     _fields.push({
+	//       name: name,
+	//       placeholder: placeholder,
+	//       autoFocus: autoFocus,
+	//       helpText: helpText,
+	//       isPassword: isPassword,
+	//       preText: preText,
+	//     })
+	//     _val.addField(name, defaultValue)
+	//   }
+	//
+	//   this.addValidator = () => {
+	//     _val.addValidator.apply(_val, arguments)
+	//   }
+	//
+	//   this.generate = () => {
+	//     return generate(_fields, _val, _bText)
+	//   }
+	// }
 
-	  this.addField = function (name, defaultValue, placeholder, helpText, autoFocus, isPassword, preText) {
-	    _fields.push({
-	      name: name,
-	      placeholder: placeholder,
-	      autoFocus: autoFocus,
-	      helpText: helpText,
-	      isPassword: isPassword,
-	      preText: preText
-	    });
-	    _val.addField(name, defaultValue);
-	  };
-	  this.addValidator = function () {
-	    _val.addValidator.apply(_val, arguments);
-	  };
-	  this.generate = function () {
-	    return generate(_fields, _val, _bText);
-	  };
-	}
+	var FormGenerator = function () {
+	  function FormGenerator(buttonText) {
+	    _classCallCheck(this, FormGenerator);
+
+	    this._bText = buttonText;
+	    this._val = new _formValidator2.default(false);
+	    this._fields = [];
+	  }
+
+	  _createClass(FormGenerator, [{
+	    key: 'setButtonText',
+	    value: function setButtonText(text) {
+	      this._bText = text;
+	    }
+	  }, {
+	    key: 'addField',
+	    value: function addField(name, defaultValue, placeholder, helpText, autoFocus, isPassword, preText) {
+	      this._fields.push({
+	        name: name,
+	        placeholder: placeholder,
+	        autoFocus: autoFocus,
+	        helpText: helpText,
+	        isPassword: isPassword,
+	        preText: preText
+	      });
+	      this._val.addField(name, defaultValue);
+	    }
+	  }, {
+	    key: 'addValidator',
+	    value: function addValidator() {
+	      this._val.addValidator.apply(this._val, arguments);
+	    }
+	  }, {
+	    key: 'generate',
+	    value: function generate() {
+	      return _generate(this._fields, this._val, this._bText);
+	    }
+	  }]);
+
+	  return FormGenerator;
+	}();
 
 	exports.default = FormGenerator;
 	module.exports = exports['default'];

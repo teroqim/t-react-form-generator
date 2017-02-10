@@ -139,37 +139,78 @@ function generate2(_fields, _val, _bText) {
   });
 }
 
-function FormGenerator(buttonText) {
-  var _val = new FormValidator(false);
-  var _fields = [];
-  var _bText = buttonText;
-  this.setButtonText = function(text){
-    _bText = text;
-  };
+// function FormGenerator(buttonText) {
+//   const _val = new FormValidator(false)
+//   const _fields = []
+//   var _bText = buttonText
+//
+//   this.setButtonText = text => {
+//     _bText = text
+//   }
+//
+//   this.addField = (name,
+//                   defaultValue,
+//                   placeholder,
+//                   helpText,
+//                   autoFocus,
+//                   isPassword,
+//                   preText) => {
+//     _fields.push({
+//       name: name,
+//       placeholder: placeholder,
+//       autoFocus: autoFocus,
+//       helpText: helpText,
+//       isPassword: isPassword,
+//       preText: preText,
+//     })
+//     _val.addField(name, defaultValue)
+//   }
+//
+//   this.addValidator = () => {
+//     _val.addValidator.apply(_val, arguments)
+//   }
+//
+//   this.generate = () => {
+//     return generate(_fields, _val, _bText)
+//   }
+// }
 
-  this.addField = function(name,
-                          defaultValue,
-                          placeholder,
-                          helpText,
-                          autoFocus,
-                          isPassword,
-                          preText){
-    _fields.push({
+class FormGenerator {
+  constructor(buttonText){
+    this._bText = buttonText
+    this._val = new FormValidator(false)
+    this._fields = []
+  }
+
+  setButtonText(text) {
+    this._bText = text
+  }
+
+  addField(name,
+            defaultValue,
+            placeholder,
+            helpText,
+            autoFocus,
+            isPassword,
+            preText) {
+    this._fields.push({
       name: name,
       placeholder: placeholder,
       autoFocus: autoFocus,
       helpText: helpText,
       isPassword: isPassword,
       preText: preText,
-    });
-    _val.addField(name, defaultValue);
-  };
-  this.addValidator = function(){
-    _val.addValidator.apply(_val, arguments);
-  };
-  this.generate = function(){
-    return generate(_fields, _val, _bText)
-  };
+    })
+    this._val.addField(name, defaultValue)
+  }
+
+  addValidator() {
+    this._val.addValidator.apply(this._val, arguments)
+  }
+
+  generate() {
+    return generate(this._fields, this._val, this._bText)
+  }
 }
 
 export default FormGenerator
