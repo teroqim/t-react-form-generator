@@ -86,7 +86,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	function _generate(fields, val, bText) {
+	function _generate(fields, val, bText, hideButton) {
 	  return function (_React$Component) {
 	    _inherits(_class, _React$Component);
 
@@ -146,6 +146,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	          }
 	        }
 
+	        var btn = null;
+	        if (!hideButton) {
+	          btn = _react2.default.createElement(
+	            'button',
+	            { className: 'action-button', onClick: this.onSubmit.bind(this) },
+	            bText
+	          );
+	        }
+
 	        return _react2.default.createElement(
 	          'div',
 	          { className: 'form-wrapper' },
@@ -163,11 +172,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	              errMsg
 	            )
 	          ),
-	          _react2.default.createElement(
-	            'button',
-	            { className: 'action-button', onClick: this.onSubmit.bind(this) },
-	            bText
-	          )
+	          btn
 	        );
 	      }
 	    }]);
@@ -176,135 +181,27 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }(_react2.default.Component);
 	}
 
-	function generate2(_fields, _val, _bText) {
-	  return _react2.default.createClass({
-	    componentDidMount: function componentDidMount() {
-	      (0, _clamp2.default)(this.refs.errMsg, { clamp: 2 });
-	    },
-
-	    getInitialState: function getInitialState() {
-	      return {
-	        validator: _val
-	      };
-	    },
-
-	    onSubmit: function onSubmit() {
-	      this.state.validator.setEnabled(true);
-	      if (this.state.validator.validate(true)) {
-	        this.props.onSubmit(this.state.validator);
-	      } else {
-	        this.forceUpdate();
-	      }
-	    },
-
-	    render: function render() {
-	      var inputFields = _fields.map(function (field) {
-	        var func = function (e) {
-	          this.state.validator[field.name].update(e.target.value);
-	          this.state.validator.validate(false);
-	          this.forceUpdate();
-	        }.bind(this);
-	        return _react2.default.createElement(_tReactInputField2.default, {
-	          key: field.name,
-	          autoFocus: field.autoFocus,
-	          className: field.name,
-	          onChange: func,
-	          onEnter: this.onSubmit,
-	          password: field.isPassword,
-	          preText: field.preText,
-	          placeholder: field.placeholder,
-	          infoBubbleText: field.helpText,
-	          showError: this.state.validator[field.name].shouldHighlight,
-	          value: this.state.validator[field.name].value
-	        });
-	      }.bind(this));
-
-	      var errMsg = this.state.validator.getErrorMessage();
-	      if (this.props.extErrMsg) {
-	        if (errMsg) {
-	          errMsg = this.props.extErrMsg + ", " + errMsg;
-	        } else {
-	          errMsg = this.props.extErrMsg;
-	        }
-	      }
-
-	      return _react2.default.createElement(
-	        'div',
-	        { className: 'form-wrapper' },
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'input-wrapper' },
-	          inputFields,
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'err-msg', ref: "errMsg" },
-	            errMsg
-	          )
-	        ),
-	        _react2.default.createElement(
-	          'button',
-	          { className: 'action-button', onClick: this.onSubmit },
-	          _bText
-	        )
-	      );
-	    }
-	  });
-	}
-
-	// function FormGenerator(buttonText) {
-	//   const _val = new FormValidator(false)
-	//   const _fields = []
-	//   var _bText = buttonText
-	//
-	//   this.setButtonText = text => {
-	//     _bText = text
-	//   }
-	//
-	//   this.addField = (name,
-	//                   defaultValue,
-	//                   placeholder,
-	//                   helpText,
-	//                   autoFocus,
-	//                   isPassword,
-	//                   preText) => {
-	//     _fields.push({
-	//       name: name,
-	//       placeholder: placeholder,
-	//       autoFocus: autoFocus,
-	//       helpText: helpText,
-	//       isPassword: isPassword,
-	//       preText: preText,
-	//     })
-	//     _val.addField(name, defaultValue)
-	//   }
-	//
-	//   this.addValidator = () => {
-	//     _val.addValidator.apply(_val, arguments)
-	//   }
-	//
-	//   this.generate = () => {
-	//     return generate(_fields, _val, _bText)
-	//   }
-	// }
-
 	var FormGenerator = function () {
 	  function FormGenerator(buttonText) {
+	    var hideButton = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+
 	    _classCallCheck(this, FormGenerator);
 
-	    this._bText = buttonText;
-	    this._val = new _formValidator2.default(false);
-	    this._fields = [];
+	    this.hideButton = hideButton;
+	    this.bText = buttonText;
+	    this.val = new _formValidator2.default(false);
+	    this.fields = [];
 	  }
 
 	  _createClass(FormGenerator, [{
 	    key: 'setButtonText',
 	    value: function setButtonText(text) {
-	      this._bText = text;
+	      this.bText = text;
 	    }
 	  }, {
 	    key: 'addField',
 	    value: function addField(name, defaultValue, placeholder, helpText, autoFocus, isPassword, preText) {
-	      this._fields.push({
+	      this.fields.push({
 	        name: name,
 	        placeholder: placeholder,
 	        autoFocus: autoFocus,
@@ -312,17 +209,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	        isPassword: isPassword,
 	        preText: preText
 	      });
-	      this._val.addField(name, defaultValue);
+	      this.val.addField(name, defaultValue);
 	    }
 	  }, {
 	    key: 'addValidator',
 	    value: function addValidator() {
-	      this._val.addValidator.apply(this._val, arguments);
+	      this.val.addValidator.apply(this.val, arguments);
 	    }
 	  }, {
 	    key: 'generate',
 	    value: function generate() {
-	      return _generate(this._fields, this._val, this._bText);
+	      return _generate(this.fields, this.val, this.bText, this.hideButton);
 	    }
 	  }]);
 
