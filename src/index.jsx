@@ -12,6 +12,10 @@ function generate(fields, val, bText, hideButton){
       }
     }
 
+    getValue(name){
+      return this.state.validator[name].value
+    }
+
     onSubmit(){
       this.state.validator.setEnabled(true)
       if (this.state.validator.validate(true)) {

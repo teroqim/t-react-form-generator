@@ -102,6 +102,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 
 	    _createClass(_class, [{
+	      key: 'getValue',
+	      value: function getValue(name) {
+	        return this.state.validator[name].value;
+	      }
+	    }, {
 	      key: 'onSubmit',
 	      value: function onSubmit() {
 	        this.state.validator.setEnabled(true);
