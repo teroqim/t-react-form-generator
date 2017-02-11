@@ -776,7 +776,7 @@ return /******/ (function(modules) { // webpackBootstrap
 		        type = 'password';
 		      }
 
-		      var inputClassName = this.props.inputClassName;
+		      var inputClassName = this.props.inputClassName || '';
 		      if (this.props.showError) {
 		        inputClassName += ' err';
 		      }
@@ -798,7 +798,7 @@ return /******/ (function(modules) { // webpackBootstrap
 		      }
 
 		      var errorBubble = null;
-		      if (this.props.errorBubbleText && this.state.showErrorBubble) {
+		      if (this.props.errorBubbleText && this.props.showError) {
 		        errorBubble = _react2.default.createElement(
 		          'div',
 		          null,
