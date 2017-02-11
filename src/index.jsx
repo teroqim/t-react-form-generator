@@ -44,6 +44,7 @@ function generate(fields, val, bText, hideButton){
             preText={field.preText}
             placeholder={field.placeholder}
             infoBubbleText={field.helpText}
+            errorBubbleText={field.errorBubbleText}
             showError={this.state.validator[field.name].shouldHighlight}
             value={this.state.validator[field.name].value}
             />
@@ -91,22 +92,17 @@ class FormGenerator {
     this.bText = text
   }
 
-  addField(name,
-            defaultValue,
-            placeholder,
-            helpText,
-            autoFocus,
-            isPassword,
-            preText) {
+  addField(args) {
     this.fields.push({
-      name: name,
-      placeholder: placeholder,
-      autoFocus: autoFocus,
-      helpText: helpText,
-      isPassword: isPassword,
-      preText: preText,
+      name: args.name,
+      placeholder: args.placeholder,
+      autoFocus: args.autoFocus,
+      helpText: args.infoBubbleText,
+      isPassword: args.isPassword,
+      preText: args.preText,
+      errorBubbleText: args.errorBubbleText
     })
-    this.val.addField(name, defaultValue)
+    this.val.addField(args.name, args.defaultValue || '')
   }
 
   addValidator() {

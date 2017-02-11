@@ -137,6 +137,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            preText: field.preText,
 	            placeholder: field.placeholder,
 	            infoBubbleText: field.helpText,
+	            errorBubbleText: field.errorBubbleText,
 	            showError: _this2.state.validator[field.name].shouldHighlight,
 	            value: _this2.state.validator[field.name].value
 	          });
@@ -205,16 +206,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	  }, {
 	    key: 'addField',
-	    value: function addField(name, defaultValue, placeholder, helpText, autoFocus, isPassword, preText) {
+	    value: function addField(args) {
 	      this.fields.push({
-	        name: name,
-	        placeholder: placeholder,
-	        autoFocus: autoFocus,
-	        helpText: helpText,
-	        isPassword: isPassword,
-	        preText: preText
+	        name: args.name,
+	        placeholder: args.placeholder,
+	        autoFocus: args.autoFocus,
+	        helpText: args.infoBubbleText,
+	        isPassword: args.isPassword,
+	        preText: args.preText,
+	        errorBubbleText: args.errorBubbleText
 	      });
-	      this.val.addField(name, defaultValue);
+	      this.val.addField(args.name, args.defaultValue || '');
 	    }
 	  }, {
 	    key: 'addValidator',
@@ -795,6 +797,22 @@ return /******/ (function(modules) { // webpackBootstrap
 		        );
 		      }
 
+		      var errorBubble = null;
+		      if (this.props.errorBubbleText && this.state.showErrorBubble) {
+		        errorBubble = _react2.default.createElement(
+		          'div',
+		          null,
+		          _react2.default.createElement('div', { className: 'error-bubble',
+		            onMouseOver: this.onMouseOverErrorBubble.bind(this),
+		            onMouseOut: this.onMouseOutErrorBubble.bind(this) }),
+		          this.state.showErrorBox ? _react2.default.createElement(
+		            'div',
+		            { className: 'error-box' },
+		            this.props.errorBubbleText
+		          ) : null
+		        );
+		      }
+
 		      var wrapperClass = 'input-field-wrapper';
 		      if (this.props.wrapperClass) {
 		        wrapperClass += ' ' + this.props.wrapperClass;
@@ -827,6 +845,7 @@ return /******/ (function(modules) { // webpackBootstrap
 		          value: this.state.value
 		        }),
 		        info,
+		        errorBubble,
 		        preText
 		      );
 		    }
