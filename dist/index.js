@@ -767,6 +767,16 @@ return /******/ (function(modules) { // webpackBootstrap
 		      this.setState({ showInfoBox: false });
 		    }
 		  }, {
+		    key: 'onMouseOverErrorBubble',
+		    value: function onMouseOverErrorBubble() {
+		      this.setState({ showErrorBox: true });
+		    }
+		  }, {
+		    key: 'onMouseOutErrorBubble',
+		    value: function onMouseOutErrorBubble() {
+		      this.setState({ showErrorBox: false });
+		    }
+		  }, {
 		    key: 'render',
 		    value: function render() {
 		      var _this2 = this;
