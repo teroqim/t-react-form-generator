@@ -602,7 +602,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var errArray = [];
 	    for (var i = 0; i < sortedVals.length; i++) {
 	      var val = sortedVals[i];
-	      if (!val.isValid) {
+	      if (!val.isValid && val.errorMessage) {
 	        errArray.push(val.errorMessage);
 	      }
 	    }
