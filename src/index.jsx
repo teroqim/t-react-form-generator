@@ -48,7 +48,7 @@ function generate(fields, val, bText, hideButton){
             showError={this.state.validator[field.name].shouldHighlight}
             value={this.state.validator[field.name].value}
             />
-        );
+        )
       })
 
       var errMsg = this.state.validator.getErrorMessage()
