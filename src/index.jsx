@@ -68,7 +68,7 @@ function generate(fields, val, bText, hideButton, disableButton){
 
       var btn = null
       if (!hideButton) {
-        btn = <button disable={this.state.submitDisabled} className='action-button' onClick={this.onSubmit.bind(this)}>{bText}</button>
+        btn = <button disabled={this.state.submitDisabled} className='action-button' onClick={this.onSubmit.bind(this)}>{bText}</button>
       }
 
       return (

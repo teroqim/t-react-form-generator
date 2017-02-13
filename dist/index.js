@@ -162,7 +162,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (!hideButton) {
 	          btn = _react2.default.createElement(
 	            'button',
-	            { disable: this.state.submitDisabled, className: 'action-button', onClick: this.onSubmit.bind(this) },
+	            { disabled: this.state.submitDisabled, className: 'action-button', onClick: this.onSubmit.bind(this) },
 	            bText
 	          );
 	        }
