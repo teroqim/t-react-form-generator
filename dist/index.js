@@ -86,7 +86,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	function _generate(fields, val, bText, hideButton) {
+	function _generate(fields, val, bText, hideButton, disableButton) {
 	  return function (_React$Component) {
 	    _inherits(_class, _React$Component);
 
@@ -96,7 +96,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	      var _this = _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).call(this, props));
 
 	      _this.state = {
-	        validator: val
+	        validator: val,
+	        submitDisabled: disableButton
 	      };
 	      return _this;
 	    }
@@ -105,6 +106,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	      key: 'getValue',
 	      value: function getValue(name) {
 	        return this.state.validator[name].value;
+	      }
+	    }, {
+	      key: 'setSubmitDisabled',
+	      value: function setSubmitDisabled(valu) {
+	        this.setState({ submitDisabled: valu });
 	      }
 	    }, {
 	      key: 'onSubmit',
@@ -156,7 +162,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (!hideButton) {
 	          btn = _react2.default.createElement(
 	            'button',
-	            { className: 'action-button', onClick: this.onSubmit.bind(this) },
+	            { disable: this.state.submitDisabled, className: 'action-button', onClick: this.onSubmit.bind(this) },
 	            bText
 	          );
 	        }
@@ -190,11 +196,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	var FormGenerator = function () {
 	  function FormGenerator(buttonText) {
 	    var hideButton = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+	    var disableButton = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
 
 	    _classCallCheck(this, FormGenerator);
 
 	    this.hideButton = hideButton;
 	    this.bText = buttonText;
+	    this.disableButton = disableButton;
 	    this.val = new _formValidator2.default(false);
 	    this.fields = [];
 	  }
@@ -226,7 +234,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }, {
 	    key: 'generate',
 	    value: function generate() {
-	      return _generate(this.fields, this.val, this.bText, this.hideButton);
+	      return _generate(this.fields, this.val, this.bText, this.hideButton, this.disableButton);
 	    }
 	  }]);
 

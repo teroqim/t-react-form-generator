@@ -3,17 +3,22 @@ import InputField from 't-react-input-field'
 import FormValidator from './form-validator.js'
 import clamp from './clamp.js'
 
-function generate(fields, val, bText, hideButton){
+function generate(fields, val, bText, hideButton, disableButton){
   return class extends React.Component {
     constructor(props){
       super(props)
       this.state = {
-        validator: val
+        validator: val,
+        submitDisabled: disableButton
       }
     }
 
     getValue(name){
       return this.state.validator[name].value
+    }
+
+    setSubmitDisabled(valu){
+      this.setState({submitDisabled: valu})
     }
 
     onSubmit(){
@@ -63,7 +68,7 @@ function generate(fields, val, bText, hideButton){
 
       var btn = null
       if (!hideButton) {
-        btn = <button className='action-button' onClick={this.onSubmit.bind(this)}>{bText}</button>
+        btn = <button disable={this.state.submitDisabled} className='action-button' onClick={this.onSubmit.bind(this)}>{bText}</button>
       }
 
       return (
@@ -81,9 +86,10 @@ function generate(fields, val, bText, hideButton){
 }
 
 class FormGenerator {
-  constructor(buttonText, hideButton=false){
+  constructor(buttonText, hideButton=false, disableButton=false){
     this.hideButton = hideButton
     this.bText = buttonText
+    this.disableButton = disableButton
     this.val = new FormValidator(false)
     this.fields = []
   }
@@ -110,7 +116,7 @@ class FormGenerator {
   }
 
   generate() {
-    return generate(this.fields, this.val, this.bText, this.hideButton)
+    return generate(this.fields, this.val, this.bText, this.hideButton, this.disableButton)
   }
 }
 
