@@ -119,6 +119,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (this.state.validator.validate(true)) {
 	          this.props.onSubmit(this.state.validator);
 	        } else {
+	          if (this.props.onSubmitFailed) {
+	            this.props.onSubmitFailed();
+	          }
 	          this.forceUpdate();
 	        }
 	      }

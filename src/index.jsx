@@ -27,6 +27,9 @@ function generate(fields, val, bText, hideButton, disableButton){
         this.props.onSubmit(this.state.validator)
       }
       else {
+        if (this.props.onSubmitFailed) {
+          this.props.onSubmitFailed()
+        }
         this.forceUpdate()
       }
     }
